@@ -1,0 +1,116 @@
+s1
+Q1
+<html>
+    <head>
+        <title> first page </title>
+    </head>
+    <form action="S04.php" method="POST">
+        Enter employee no : <input type="text" name="no"><br><br>
+        Enter employee name : <input type="text" name="name"><br><br>
+        Enter employee address : <input type="text" name="address"><br><br>
+        <input type="submit" value="submit">
+
+    </form>
+</html>
+
+<?php
+$no=$_POST['no'];
+$name=$_POST['name'];
+$address=$_POST['address'];
+setcookie('no',$no);
+setcookie('name',$name);
+setcookie('address',$address);
+?>
+
+
+<html>
+    <head>
+        <title> Second page </title>
+    </head>
+    <body>
+    <?php
+         echo"<br>Employee No : ".$no."<br>";
+        echo"Employee Name : ".$name."<br>";
+        echo"Employee Address : ".$address."<br><br>";
+        ?>
+    <form action="S04_1.php" method="POST">
+        Enter salary :<input type="number" name="sal"><br><br>
+        Enter DA :<input type="number" name="da"><br><br>
+        Enter HRA :<input type="number" name="hra"><br><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
+
+
+<?php
+$sal=$_POST['sal'];
+$da=$_POST['da'];
+$hra=$_POST['hra'];
+$total=$sal+$da+$hra;
+  if (isset($_COOKIE['no'])){
+    $eno=$_COOKIE['no'];
+  }
+  if (isset($_COOKIE['name'])){
+    $ename=$_COOKIE['name'];
+  }
+  if (isset($_COOKIE['address'])){
+    $eadd=$_COOKIE['address'];
+  }
+?>
+
+
+<html>
+    <head>
+        <title> third page</title>
+    </head>
+    <body>
+    <?php
+         echo"<br>Employee No : ".$eno."<br><br>";
+        echo"Employee Name : ".$ename."<br>";
+        echo"Employee Address : ".$eadd."<br>";
+        echo"Employee Salary : ".$sal."<br>";
+        echo"Employee DA : ".$da."<br>";
+        echo"Employee HRA : ".$hra."<br>";
+        echo"Employee's Total salary  : ".$total."<br><br>";
+
+        ?>
+    </body>
+</html>
+
+Q2
+
+import pandas as pd 
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+from sklearn.linear_model import LinearRegression
+
+data =pd.read_csv("fish_data.csv")
+
+df = pd.DataFrame(data)
+
+x=df[['Length1','Length2','Length3','Height','Width']]
+y = df['Weight']
+
+x_train,x_test,y_train,y_test = train_test_split(x, y,test_size = 0.3,random_state=42)
+
+print(x_train)
+print(x_test)
+print(y_train)
+print(y_test)
+
+model = LinearRegression()
+
+model.fit(x_train,y_train)
+
+y_pred = model.predict(x_test)
+
+mse = metrics.mean_squared_error(y_test,y_pred)
+smse = np.sqrt(mse)
+
+print("model:\n")
+print("mse = ",mse)
+print("smse = ",smse)
+print("Coefficients:",model.coef_)
+print("Intercept:",model.intercept_)

@@ -1,0 +1,75 @@
+s28 
+Q1
+
+<html>
+<head>
+<script>
+$(document).ready(function(){
+    $('#loginForm').submit(function(e){
+        e.preventDefault();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: 'S28.php',
+            data: {username: username, password: password},
+            success: function(response){
+                $('#loginMessage').html(response);
+            }
+        });
+    });
+});
+</script>
+</head>
+<body>
+<h2>Login</h2>
+<form id="loginForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    
+    <button type="submit">Login</button>
+</form>
+<p id="loginMessage"></p>
+</body>
+</html>
+
+<?php
+$username = "ty";
+$password = "ty";
+$dbname = "ty";
+
+$conn = new pg($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "Login successful!";
+} else {
+    echo "Invalid username or password.";
+}
+
+$conn->close();
+?>
+
+Q2
+Fromsklearn.linear_modelimportLinearRegression
+Mileage=[[10],[20],[30],[40],[50],[60],[70],[80]]
+Price=[24,19,17,13,10,7,5,2]
+Reg=LinearRegression().fit(mileage,price)
+Print(‘Intercept:’,reg.intercept_)
+Print(‘Coefficient:’,reg.coef_[0])
+New_mileage=[[25],[45],[65]]
+Predicted_price=reg.predict(new_mileage)
+Print(‘Predictedprices:’,predicted_price)

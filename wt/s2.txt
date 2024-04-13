@@ -1,0 +1,108 @@
+S2
+Q1
+html
+<html>
+    <head>
+        <title> Enter page </title>
+        <style>
+            p{
+              
+            }
+        </style>
+    </head>
+    <body>
+       
+        <form action="S02.php" method="POST">
+          Enter font style : <input type="text" name="fstyle"><br>
+          Enter font size : <input type="text" name="fsize"><br>
+          Enter font color : <input type="text" name="fcolor"><br>
+          Enter bg color : <input type="text" name="bgcolor"><br>
+          <input type="submit" value="submit"><br>
+        </form>
+    </body>
+</html>
+
+php
+<?php
+    session_start();
+    if (isset($_SESSION['cnt']))
+       $_SESSION['cnt']+=1;
+    else
+       $_SESSION['cnt']=1;
+    echo "Web Page Access ".$_SESSION['cnt']," Times";
+?>
+
+<?php
+   if (isset($_COOKIE['style']))
+   {
+      $st=$_COOKIE['style'];
+   }
+   if (isset($_COOKIE['color']))
+   {
+      $color=$_COOKIE['color'];
+   }
+   if (isset($_COOKIE['bgcolor']))
+   {
+      $bgcolor=$_COOKIE['bgcolor'];
+   }
+   if (isset($_COOKIE['size']))
+   {
+      $size=$_COOKIE['size'];
+   }
+?>
+
+<html>
+    <head>
+        <title> Final webpage </title>
+        <style>
+            body{
+                background-color: <?php echo$bgcolor ?>;
+            }
+            p{
+                font-style: <?php echo$st?>;
+                font-size: <?php  echo$size?>;
+                color: <?php echo$color?>;
+            }
+        </style>
+    </head>
+    <body>
+           <p>
+              Hello this is your final results .
+           </p>
+    </body>
+
+</html>
+
+Q2
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+
+data={'YearsExperience':[1,2,3,4,5,6,7,8,9,10],
+ 'Salary':[50000,60000,70000,80000,90000,100000,110000,120000,130000,140000]}
+df=pd.DataFrame(data)
+
+X=df[['YearsExperience']]
+y=df['Salary']
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
+
+print("X_train:\n",X_train)
+print("y_train:\n",y_train)
+print("X_test:\n",X_test)
+print("y_test:\n",y_test)
+model=LinearRegression()
+model.fit(X_train,y_train)
+y_pred = model.predict(X_test)
+
+mse = metrics.mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+
+print("\nModel Evaluation:")
+print("Mean Squared Error (MSE):", mse)
+print("Root Mean Squared Error (RMSE):", rmse)
+
+print("Coefficients:",model.coef_)
+print("Intercept:",model.intercept_)

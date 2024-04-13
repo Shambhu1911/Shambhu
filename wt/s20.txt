@@ -1,0 +1,83 @@
+S20
+Q1
+students{
+    display:flex;
+    width:400px;
+    height: 170px;
+    border:2px solid white;
+}
+id,name{
+      display:block;
+      padding:5px;
+      color:red;
+      font-family:copperplate Gothic Light;
+      font-size:12pt;
+      font:bold;
+}
+age,gender{
+      padding:5px;
+      color:yellow;
+      font-family:Arial;
+      font-size:12pt;
+      font:bold;
+}
+grade{      	
+      padding:5px;
+      color:green;      
+}
+*{
+      background-color:black;     
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="S20.css"?>
+<students>
+    <student>
+        <id>1</id>
+        <name>John Doe</name>
+        <age>20</age>
+        <gender>Male</gender>
+        <grade>A</grade>
+    </student>
+    <student>
+        <id>2</id>
+        <name>Jane Smith</name>
+        <age>22</age>
+        <gender>Female</gender>
+        <grade>B+</grade>
+    </student>
+    <student>
+        <id>3</id>
+        <name>Michael Johnson</name>
+        <age>21</age>
+        <gender>Male</gender>
+        <grade>C</grade>
+    </student>
+    <student>
+        <id>4</id>
+        <name>Sarah Lee</name>
+        <age>19</age>
+        <gender>Female</gender>
+        <grade>A-</grade>
+    </student>
+    <student>
+        <id>5</id>
+        <name>David Brown</name>
+        <age>23</age>
+        <gender>Male</gender>
+        <grade>B</grade>
+    </student>
+</students>
+
+Q2
+Importnltk
+Fromnltk.corpusimportstopwords
+Nltk.download(‘stopwords’)
+Text=“Helloall,WelcometoPythonProgrammingAcademy.PythonProgrammingAcademyis
+aniceplatformtolearnnewprogrammingskills.ItisdifficulttogetenrolledinthisAcademy.”
+Tokens=nltk.word_tokenize(text)
+Stop_words=set(stopwords.words(‘english’))
+Filtered_tokens=[wordforwordintokensifnotword.lower()instop_words]
+
+Print(filtered_tokens)

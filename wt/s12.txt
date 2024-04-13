@@ -1,0 +1,89 @@
+S12
+Q1
+<html>
+<head>
+    <style>
+        span {
+            font-size: 25px;
+        }
+
+        table {
+            color: red;
+            ;
+        }
+    </style>
+    <script type="text/javascript">
+        function print() {
+            var ob = false;
+            ob = new XMLHttpRequest();
+            ob.open("GET", "S12.php?"); 
+            ob.send();
+            ob.onreadystatechange = function() {
+                if (ob.readyState == 4 && ob.status == 200) {
+                    document.getElementById("i").innerHTML = ob.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h3>Display the contents of a contact.dat file </h3>
+        <br><input type="button" value=Print onclick="print()">
+        <span id="i"></span>
+    </center>
+</body>
+</html>
+
+<?php
+$fp = fopen('contact.dat','r');
+echo "<table border=1>";
+echo "<tr><th>Sr. No.</th><th>Name</th><th>Residence No.</th><th>Mob. no.</th><th>Relation</th></tr>";
+while($row = fscanf($fp,"%s %s %s %s %s"))
+{
+    echo "<tr>";
+    foreach($row as $r)
+    {
+        echo "<td>$r</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
+fclose($fp);
+?>
+
+
+Q2
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+
+
+heights = np.random.normal(170, 10, 10)
+weights = np.random.normal(70, 5, 10)
+df = pd.DataFrame({'Height': heights, 'Weight': weights})
+X=df[['Height']]
+y=df['Weight']
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
+
+print("X_train:\n",X_train)
+print("y_train:\n",y_train)
+print("X_test:\n",X_test)
+print("y_test:\n",y_test)
+
+model=LinearRegression()
+model.fit(X_train,y_train)
+y_pred = model.predict(X_test)
+
+mse = metrics.mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+
+print("\nModel Evaluation:")
+print("Mean Squared Error (MSE):", mse)
+print("Root Mean Squared Error (RMSE):", rmse)
+
+print("Coefficients:",model.coef_)
+print("Intercept:",model.intercept_)
