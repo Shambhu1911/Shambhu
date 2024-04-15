@@ -1,0 +1,45 @@
+S7
+Q1.
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#ul-nb {
+list-style: none;
+margin:0;
+padding:0;
+overflow: hidden;
+ background-color: grey;
+}
+#ul-nb li {
+float:left;
+padding:15px;
+text-align: center;
+margin-left:10px;
+}
+.active {
+ background-color: white;
+}
+</style>
+</head>
+<body>
+<ul id="ul-nb">
+ 
+<li><a class="active" href="#">Home</a></li>
+<li><a href="#">Java</a></li>
+<li><a href="#">HTML</a></li>
+<li><a href="#">CSS</a></li>
+</ul>
+</body>
+</html>
+
+Q2
+A->
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+data = pd.read_csv('Data.csv')
+data_with_onehot = pd.get_dummies(data, columns=['Country'], prefix=['Country'])
+label_encoder = LabelEncoder()
+data_with_onehot['Purchased'] = label_encoder.fit_transform(data['Purchased'])
+data_with_onehot.to_csv('Modified_Data.csv', index=False)
+print("OneHot encoding and Label encoding applied. Data saved to Modified_Data.csv")

@@ -1,0 +1,130 @@
+SLIP NO.12
+Q1.
+<html>
+<body>
+<form name="f1" action="setb1.php" method="POST">
+Enter the 1st number<input type="text" name="n1">
+<br>Enter 2nd number<input type"text name="n2">
+<br>Addition<input type=radio name=radio value="a">
+<br>Subtraction<input type=radio name=radio value="s">
+<br>Multiplication<input type=radio name=radio 
+value="m">
+<br>Division<input type="radio" name="radio" value="d">
+<br><input type="submit" value="Answer">
+</form>
+</body>
+</html>
+
+<?php
+include("setb12.php");
+$n1=$_POST['n1'];
+$n2=$_POST['n2'];
+$opt=$_POST['radio'];
+if($opt=='a')
+{
+if($n1 && $n2)
+echo"Answer".add($n1,$n2);
+elseif($n1)
+echo"Answer".add($n1);
+elseif($n2)
+echo"answer".add($n2);
+}
+if($opt=='s')
+{
+if($n1 && $n2)
+echo"Answer".sub($n1,$n2);
+elseif($n1)
+echo"Answer".sub($n1);
+elseif($n2)
+echo"answer".sub($n2);
+}
+if($opt=='m')
+{
+if($n1 && $n2)
+echo"Answer".mul($n1,$n2);
+elseif($n1)
+echo"Answer".mul($n1);
+elseif($n2)
+echo"answer".mul($n2);
+}
+if($opt=='d')
+{
+if($n2==0)
+echo"Division by zero is not possible";
+else
+{
+if($n1 && $n2)
+echo"Answer".div($n1,$n2);
+elseif($n1)
+echo"Answer".div($n1);
+elseif($n2)
+echo"answer".div($n2);
+}
+}
+?>
+
+<?php
+function add($n1,$n2=10)
+{
+return($n1+$n2);
+}
+function sub($n2,$n1=3)
+{
+return($n1-$n2);
+}
+function mul($n1,$n2=5)
+{
+return($n1*$n2);
+}
+function div($n1,$n2=3)
+{
+return($n1/$n2);
+}
+?
+
+Q2
+A
+import numpy as np
+import matplotlib.pyplot as plt
+random_data = np.random.randint(0, 100, 50)
+plt.figure(figsize=(10, 4))
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2, markersize=8)
+plt.title('Line Chart', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.scatter(range(50), random_data, color='green', label='Data Points', s=50)
+plt.title('Scatter Plot', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.hist(random_data, bins=10, color='purple', edgecolor='black', alpha=0.7)
+plt.title('Histogram', fontsize=14)
+plt.xlabel('Value', fontsize=12)
+plt.ylabel('Frequency', fontsize=12)
+plt.grid(axis='y', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.boxplot(random_data, vert=False, patch_artist=True, boxprops=dict(facecolor='orange'))
+plt.title('Box Plot', fontsize=14)
+plt.xlabel('Value', fontsize=12)
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+plt.show()
+
+B->
+import pandas as pd
+data = {
+'name': ['John', 'Jane', 'Bob', 'Alice', 'Eve', 'John', 'Bob', 'Jane', 'Eve', 'Alice', '', None, 'Bob'],
+'salary': [50000, 60000, None, 65000, 70000, 50000, 55000, 60000, None, 70000, 75000,80000, 55000],
+'department': ['HR', 'IT', 'Sales', 'HR', 'IT', 'HR', 'Sales', 'IT', 'IT', 'Sales', 'IT', 'HR', 'Sales']}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+df = df.dropna(subset=['name', 'salary', 'department']).replace('', None)
+print("\nModified DataFrame:")
+print(df)

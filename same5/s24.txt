@@ -1,0 +1,55 @@
+SLIP NO.24
+Q1.
+<html>
+<body>
+<form action="file1.php" method="POST">
+Enter 1st file name
+<input type="text" name=txt1><br>
+Enter 2nd file name
+<input type="text" name=txt2><br>
+Append <input type="radio" name="opt1" value="o">
+<input type="submit" value="ok">
+</form>
+</body>
+</html>
+<?php
+$f1=$_POST['txt1'];
+$f2=$_POST['txt2'];
+$file1=fopen($f1,"r")or exit("cant open file");
+echo "hello";
+$file2=fopen($f2,"a+")or exit("cant open file");
+while(!feof($file1))
+{
+$data=fread($file1,filesize($f1));
+fwrite($file2,$data);
+}
+echo "file appended";
+fclose($file1);
+fclose($file2);
+?
+
+Q2
+A
+import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_csv('iris.csv')
+species_frequency = data['species'].value_counts()
+plt.figure(figsize=(8, 6))
+species_frequency.plot(kind='bar', color=['blue', 'green', 'red'])
+plt.title('Frequency of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0) 
+plt.show()
+
+B->
+import seaborn as sns
+import matplotlib.pyplot as plt
+iris = sns.load_dataset('iris')
+sns.histplot(data=iris, x='sepal_length', hue='species', element='step', stat='density',common_norm=False, kde=True)
+sns.histplot(data=iris, x='sepal_width', hue='species', element='step', stat='density',ommon_norm=False, kde=True)
+sns.histplot(data=iris, x='petal_length', hue='species', element='step', stat='density',ommon_norm=False, kde=True)
+sns.histplot(data=iris, x='petal_width', hue='species', element='step', stat='density',common_norm=False, kde=True)
+ Set the title and show the plot
+plt.suptitle("Histogram of Iris Data by Species")
+plt.show()

@@ -1,0 +1,42 @@
+SLIP NO.27
+Q1.
+<html>
+<body>
+<form action="file1.php" method="POST">
+Enter 1st file name
+<input type="text" name=txt1><br>
+Enter 2nd file name
+<input type="text" name=txt2><br>
+<input type="submit" value="copy">
+</form>
+</body>
+</html>
+
+<?php
+$f1=$_POST['txt1'];
+$f2=$_POST['txt2'];
+$file1=fopen($f1,"r")or exit("cant open file");
+$file2=fopen($f2,"w")or exit("cant open file");
+while(!feof($file1))
+{
+$data=fread($file1,filesize($f1));
+fwrite($file2,$data);
+}
+echo "file appended";
+fclose($file1);
+fclose($file2);
+?
+
+Q2
+A
+slip27
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+df = pd.read_csv('data.csv')
+encoder = OneHotEncoder(sparse=False)
+encoded_country = encoder.fit_transform(df[['Country']])
+df_encoded = pd.concat([df, pd.DataFrame(encoded_country,
+columns=encoder.get_feature_names_out(['Country']))], axis=1)
+df_encoded = df_encoded.drop(columns=['Country'])
+label_encoder = LabelEncoder()
+df_encoded['Purchased'] = label_encoder.fit_transform(df_encoded['Purchased'])

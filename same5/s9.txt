@@ -1,0 +1,105 @@
+SLIP NO.9
+Q1.
+<html>
+ <body>
+ <form action=secondprog.php method=post>
+ <label>Enter the string:*</label><br>
+ <input type='text' name='string1'><br><br>
+ <label>choice the separator:*</label><br>
+ <select name="separator">
+ <option value="">[select]</option>
+ <option value="#">#</option>
+ <option value="%">%</option>
+ <option value=",">,</option>
+ <option value="!">!</option>
+ </select><br><br>
+ <input type='radio' name="choice" value=1>separate 
+string<br>
+ <input type='radio' name="choice" value=2>replace 
+separator
+ <!-- for replacement of separator we need another 
+dropdownlist -->
+ <select name="newsep">
+ <option value="">[select]</option>
+ <option value="#">#</option>
+ <option value="%">%</option>
+ <option value=",">,</option>
+ <option value="!">!</option>
+ </select><br>
+ <input type='radio' name="choice" value=3>Get the 
+last word of String<br>
+ <br><input type=submit value=ok>
+ <br><input type=reset value=cancel>
+ </form>
+ </body>
+</html>
+
+<?php
+$string1=$_POST['string1'];
+$separater=$_POST['separator'];
+$choice=$_POST['choice'];
+$new_separater=$_POST['newsep'];
+echo"originonal String is=$string1.<br>";
+switch($choice)
+{
+case 1:
+$sep_string=explode($separater,$string1);
+echo"separated string is=>";
+print_r($sep_string);
+break;
+case 2:
+$z=str_replace($separater,$new_separater,$string1);
+echo "replaced string is".$z;
+break;
+case 3:
+$lws=strrpos($string1,' ')+1;
+$last=substr($string1,$lws);
+echo $last;
+}
+?>
+
+
+Q2
+A
+import numpy as np
+import matplotlib.pyplot as plt
+random_data = np.random.randint(0, 100, 50)
+plt.figure(figsize=(10, 4))
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2, markersize=8)
+plt.title('Line Chart', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.scatter(range(50), random_data, color='green', label='Data Points', s=50)
+plt.title('Scatter Plot', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+
+B->
+import matplotlib.pyplot as plt
+subjects = ['Math', 'Science', 'English', 'History']
+marks = [85, 90, 75, 88]
+plt.figure(figsize=(8, 8))
+plt.pie(marks, labels=subjects, autopct='%1.1f%%', startangle=140,
+colors=['#ff9999','#66b3ff','#99ff99', '#ffcc99'])
+plt.title('Subject-wise Marks Distribution')
+plt.axis('equal') 
+plt.show()
+
+C->
+import pandas as pd
+data = pd.read_csv('winequality-red.csv')
+description = data.describe()
+shape = data.shape
+first_3_rows = data.head(3)
+print("a) Describing the dataset:")
+print(description)
+print("\nb) Shape of the dataset:")
+print(shape)
+print("\nc) Display first 3 rows from dataset:")
+print(first_3_rows)

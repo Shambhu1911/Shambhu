@@ -1,0 +1,85 @@
+SLIP NO.20
+Q1.
+<html>
+<body>
+<form action="setc_2.php" method="post">
+<h2>Enter choice :</h2>
+<input type="radio" name="ch" value=1> split the array into chunksr<br>
+<input type="radio" name="ch" value=2> Sort array by values without changing key <br>
+<input type="radio" name="ch" value=3> Filter even elements from array <br>
+<input type="submit" value="SUBMIT"> <input type="reset" value="CLEAR">
+</body>
+</html>
+
+<?php
+function is_even($var)
+{
+if($var%2==0)
+return $var;
+}
+$choice=$_POST['ch'];
+$arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'f'=>6,'g'=>7,'h'=>8);
+switch($choice)
+{
+case 1:
+print_r(array_chunk($arr,2));break;
+case 2:
+asort($arr);
+echo "Array in ascending order:<br>";
+print_r($arr);
+arsort($arr);
+echo "<br>Array in descending order:<br>";
+print_r($arr);
+break;
+case 3:
+print_r(array_filter($arr,'is_even'));
+break;
+}
+?>
+
+
+Q2
+A
+import numpy as np
+import matplotlib.pyplot as plt
+random_data = np.random.randint(0, 100, 50)
+plt.figure(figsize=(10, 4))
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2, markersize=8)
+plt.title('Line Chart', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.scatter(range(50), random_data, color='green', label='Data Points', s=50)
+plt.title('Scatter Plot', fontsize=14)
+plt.xlabel('Index', fontsize=12)
+plt.ylabel('Value', fontsize=12)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.hist(random_data, bins=10, color='purple', edgecolor='black', alpha=0.7)
+plt.title('Histogram', fontsize=14)
+plt.xlabel('Value', fontsize=12)
+plt.ylabel('Frequency', fontsize=12)
+plt.grid(axis='y', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.boxplot(random_data, vert=False, patch_artist=True, boxprops=dict(facecolor='orange'))
+plt.title('Box Plot', fontsize=14)
+plt.xlabel('Value', fontsize=12)
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+plt.show()
+
+B->
+import numpy as np
+import matplotlib.pyplot as plt
+random_data = np.random.randint(0, 100, 50)
+random_data = np.append(random_data, [150, 160])
+plt.figure(figsize=(10, 4))
+plt.boxplot(random_data, vert=False, patch_artist=True, boxprops=dict(facecolor='orange'))
+plt.title('Box Plot with Outliers', fontsize=14)
+plt.xlabel('Value', fontsize=12)
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+plt.show()

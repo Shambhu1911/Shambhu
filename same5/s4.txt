@@ -1,0 +1,62 @@
+S4
+Q1.
+<html>
+<body>
+<table border=5>
+<caption>List of Books</caption>
+<tr><td rowspan=2>Item No</td><td rowspan=2>Name</td><td colspan=2>Price</td>
+<tr><td>rs</td> <td>paise</td></tr> 
+</tr>
+<tr><td>1</td><td>python</td><td>500</td><td>50</td></tr>
+<tr><td>2</td><td>Java</td><td>345</td><td>00</td></tr>
+</table>
+</body>
+</html>
+
+Q2
+A->
+import numpy as np
+import matplotlib.pyplot as plt
+random_data = np.random.randint(0, 100, 50)
+plt.figure(figsize=(10, 4))
+plt.plot(random_data, color='blue', marker='o')
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.scatter(range(50), random_data, color='green')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.hist(random_data, bins=10, color='purple', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.grid(axis='y', alpha=0.5)
+plt.show()
+plt.figure(figsize=(10, 4))
+plt.boxplot(random_data, vert=False, patch_artist=True, boxprops=dict(facecolor='orange'))
+plt.title('Box Plot')
+plt.xlabel('Value')
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+plt.show()
+
+B->
+import pandas as pd
+data = pd.read_csv('User_Data.csv')
+print(f"Shape of the data: {data.shape}")
+num_rows = data.shape[0]
+num_columns = data.shape[1]
+print(f"Number of rows: {num_rows}")
+print(f"Number of columns: {num_columns}")
+print("Data types:")
+print(data.dtypes)
+print("Feature names:")
+print(data.columns)
+print("Description:")
+print(data.describe())
